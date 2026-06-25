@@ -1,0 +1,59 @@
+{
+  "generated_at": "2026-06-25T13:41:14.421141+00:00",
+  "input_root": "player_data",
+  "output_root": "public\\data",
+  "timestamp_unit_requested": "auto",
+  "timestamp_unit_used": "datetime64[ms]",
+  "files_seen": 1243,
+  "files_read": 1243,
+  "files_failed": 0,
+  "rows_read": 89104,
+  "rows_written": 89104,
+  "out_of_bounds_rows": 0,
+  "unique_players": 339,
+  "unique_matches": 796,
+  "maps": [
+    "AmbroseValley",
+    "GrandRift",
+    "Lockdown"
+  ],
+  "rows_by_map": {
+    "AmbroseValley": 61013,
+    "GrandRift": 6853,
+    "Lockdown": 21238
+  },
+  "rows_by_event": {
+    "BotKill": 2415,
+    "BotKilled": 700,
+    "BotPosition": 21712,
+    "Kill": 3,
+    "Killed": 3,
+    "KilledByStorm": 39,
+    "Loot": 12885,
+    "Position": 51347
+  },
+  "matches_by_date": {
+    "2026-02-10": 284,
+    "2026-02-11": 201,
+    "2026-02-12": 162,
+    "2026-02-13": 112,
+    "2026-02-14": 37
+  },
+  "timeline_scale_mode": "seconds_to_ms",
+  "duration_ms": {
+    "min": 13000,
+    "median": 382000,
+    "max": 890000
+  },
+  "duration_debug": {
+    "raw_min": 13,
+    "raw_median": 382,
+    "raw_max": 890,
+    "scaled_min_ms": 13000,
+    "scaled_median_ms": 382000,
+    "scaled_max_ms": 890000,
+    "scale": 1000.0,
+    "scale_mode": "seconds_to_ms"
+  },
+  "failed_files": []
+}
