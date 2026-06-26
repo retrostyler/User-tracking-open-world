@@ -21,6 +21,7 @@ export default function App() {
     playbackSpeed,
     setCurrentTimeMs,
     setIsPlaying,
+    setSelectedMatchId,
   } = useAppStore();
 
   useEffect(() => {
@@ -66,6 +67,20 @@ export default function App() {
     () => index.find((item) => item.match_id === selectedMatchId) ?? null,
     [index, selectedMatchId],
   );
+
+  useEffect(() => {
+    if (status.loading) return;
+
+    const selectedStillVisible = filteredMatches.some(
+      (item) => item.match_id === selectedMatchId,
+    );
+
+    if ((!selectedMatchId || !selectedStillVisible) && filteredMatches.length > 0) {
+      setSelectedMatchId(filteredMatches[0].match_id);
+    }
+  }, [status.loading, selectedMatchId, filteredMatches, setSelectedMatchId]);
+
+
 
   useEffect(() => {
     let cancelled = false;

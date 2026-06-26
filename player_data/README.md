@@ -1,4 +1,4 @@
-# LILA BLACK - Player Event Data
+# Player Event Data
 
 ## What is this?
 

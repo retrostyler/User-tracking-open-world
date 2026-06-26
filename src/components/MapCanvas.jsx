@@ -3,6 +3,54 @@ import { useAppStore } from '../store.js';
 
 const IMAGE_SIZE = 1024;
 
+const HEATMAP_COLORS = {
+  traffic: [56, 189, 248],
+  kills: [249, 115, 22],
+  deaths: [239, 68, 68],
+  storm: [168, 85, 247],
+  loot: [34, 197, 94],
+};
+
+const PLAYER_STYLE = {
+  human: {
+    path: '#f8fafc',
+    marker: '#38bdf8',
+    radius: 7,
+    dashed: false,
+  },
+  bot: {
+    path: '#ff7a90',
+    marker: '#fb7185',
+    radius: 5,
+    dashed: true,
+  },
+};
+
+function drawPath(ctx, points, { color, dashed = false, alpha = 1 }) {
+  if (!points || points.length < 2) return;
+
+  const stroke = (strokeStyle, lineWidth, strokeAlpha) => {
+    ctx.save();
+    ctx.strokeStyle = strokeStyle;
+    ctx.lineWidth = lineWidth;
+    ctx.globalAlpha = strokeAlpha;
+    ctx.lineJoin = 'round';
+    ctx.lineCap = 'round';
+    ctx.setLineDash(dashed ? [10, 8] : []);
+
+    ctx.beginPath();
+    points.forEach(([x, y], index) => {
+      if (index === 0) ctx.moveTo(x, y);
+      else ctx.lineTo(x, y);
+    });
+    ctx.stroke();
+    ctx.restore();
+  };
+
+  stroke('rgba(2, 6, 23, 0.9)', 7, 1);
+  stroke(color, 3, alpha);
+}
+
 const MAPS = {
   AmbroseValley: {
     label: 'Ambrose Valley',
