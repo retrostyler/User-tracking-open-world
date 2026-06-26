@@ -174,17 +174,31 @@ export function MapCanvas({ match, fallbackMapId, heatmap }) {
       return;
     }
 
+    let cancelled = false;
     const image = new Image();
-    image.src = map.minimap;
 
     image.onload = () => {
+      if (cancelled) return;
       imageRef.current = image;
       setImageReady(true);
     };
 
     image.onerror = () => {
+      if (cancelled) return;
+      console.error('Failed to load minimap:', map.minimap);
       imageRef.current = null;
       setImageReady(false);
+    };
+
+    image.src = map.minimap;
+
+    if (image.complete && image.naturalWidth > 0) {
+      imageRef.current = image;
+      setImageReady(true);
+    }
+
+    return () => {
+      cancelled = true;
     };
   }, [map?.minimap]);
 
